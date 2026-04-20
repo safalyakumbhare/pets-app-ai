@@ -33,6 +33,7 @@ class AuthController extends Controller
 
             if (Auth::user()->role_id === 2) {
                 $request->session()->regenerate();
+                return redirect()->route('user.dashboard');
                 // return redirect()->route('user.agents_dashboard');
             }
         }
