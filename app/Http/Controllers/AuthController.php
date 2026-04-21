@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Doctor;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -24,19 +25,37 @@ class AuthController extends Controller
 
         $credentials = $request->only('email', 'password');
 
-        if (Auth::attempt($credentials)) {
+        // doctoer check
+        $doctor = Doctor::where('email', $request->email)->first();
 
-            if (Auth::user()->role_id === 1) {
+        if ($doctor) {
+            if (Hash::check($request->password, $doctor->password)) {
+                Auth::login($doctor);
                 $request->session()->regenerate();
-                return redirect()->route('admin.dashboard');
+                return redirect()->route('doctor.dashboard');
+            } else {
+                return back()->withErrors([
+                    'email' => 'The credentials do not match with records.',
+                ]);
             }
+        } else {
+            if (Auth::attempt($credentials)) {
 
-            if (Auth::user()->role_id === 2) {
-                $request->session()->regenerate();
-                return redirect()->route('user.dashboard');
-                // return redirect()->route('user.agents_dashboard');
+                if (Auth::user()->role_id === 1) {
+                    $request->session()->regenerate();
+                    return redirect()->route('admin.dashboard');
+                }
+
+                if (Auth::user()->role_id === 2) {
+                    $request->session()->regenerate();
+                    return redirect()->route('user.dashboard');
+                    // return redirect()->route('user.agents_dashboard');
+                }
             }
         }
+
+
+
 
         return back()->withErrors([
             'email' => 'The credentials do not match with records.',

@@ -45,17 +45,17 @@
                       </a>
                   </li>
 
-                  <li class="nav-item">
+                  {{-- <li class="nav-item">
                       <a href="/pets_and_petsowner.php" class="nav-link" aria-expanded="false">
                           <i class="fa-solid fa-person"></i>
                           <p>Pets and Pet's Owner</p>
                           <!-- <span class="caret"></span> -->
                       </a>
-                  </li>
+                  </li> --}}
 
 
                   <li class="nav-item">
-                      <a href="/doctor_table.php" class="nav-link" aria-expanded="false">
+                      <a href="{{ route('admin.doctor.list') }}" class="nav-link" aria-expanded="false">
                           <i class="fa-solid fa-user-doctor"></i>
                           <p>Doctors</p>
                           <!-- <span class="caret"></span> -->

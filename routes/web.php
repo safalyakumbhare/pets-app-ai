@@ -1,8 +1,10 @@
 <?php
 
 use App\Http\Controllers\Admin\AdminDashboard;
+use App\Http\Controllers\Admin\AdminDoctorController;
 use App\Http\Controllers\Admin\AdminPetController;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\Doctor\DoctorDashboardController;
 use App\Http\Controllers\DoctorController;
 use App\Http\Controllers\User\UserDashboardController;
 use App\Http\Controllers\User\UserPetController;
@@ -25,7 +27,7 @@ Route::post('user/store',[UserController::class,'store'])->name('user.store');
 
 // doctor registration
 Route::get('doctor/create',[DoctorController::class,'create'])->name('doctor.create');
-Route::post('doctor/store'.[DoctorController::class,'store'])->name('doctor.store');
+Route::post('doctor/store',[DoctorController::class,'store'])->name('doctor.store');
 
 // login
 Route::post('login',[AuthController::class,'login'])->name('login');
@@ -45,10 +47,12 @@ Route::prefix('admin')->middleware('role')->group(function(){
 
 
     // pets route
-
     Route::get('pets-list',[AdminPetController::class,'index'])->name('admin.pet.list');
-    Route::get('pets-status/update/{id}',[AdminPetController::class,'status_update'])->name('admin.status.update');
+    Route::get('pets-view/{id}',[AdminPetController::class,'view'])->name('admin.pet.view');
     Route::get('pets-delete/{id}',[AdminPetController::class,'delete'])->name('admin.pet.delete');
+
+    // doctor routes
+    Route::get('doctors-list',[AdminDoctorController::class,'index'])->name('admin.doctor.list');
 });
 
 
@@ -61,4 +65,12 @@ Route::prefix('user')->middleware('role')->group(function(){
     // pets
     Route::get('pets/create',[UserPetController::class,'index'])->name('user.pets.create');
     Route::post('pets/store',[UserPetController::class,'store'])->name('user.pet.store');
+});
+
+
+Route::prefix('doctor')->middleware('role')->group(function(){
+
+    Route::get('dashboard',[DoctorDashboardController::class,'index'])->name('doctor.dashboard');
+    Route::get('logout',[AuthController::class,'logout'])->name('logout');
+
 });

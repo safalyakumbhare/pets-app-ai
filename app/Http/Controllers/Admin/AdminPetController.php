@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Pet;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class AdminPetController extends Controller
@@ -16,22 +17,19 @@ class AdminPetController extends Controller
     }
 
 
-    public function status_update(string $id)
+    public function view(string $id)
     {
-        $pet = Pet::findOrFail($id);
+        $pet_row = Pet::findOrFail($id);
 
-        if ($pet->status == "Active") {
-            $pet->status = "Inactive";
-        } else {
-            $pet->status = "Active";
-        }
+        $user_row = User::find($pet_row->id);
 
-        return redirect()->back()->with("success", "Pet status updated successfully");
+
+        return view('admin.pets.pets_view',compact('pet_row','user_row'));
     }
 
 
     public function delete($id){
-        
+
     $pet = Pet::where('id',$id)->delete();
 
     return redirect()->back()->with('success','Pet Removed Successfully');

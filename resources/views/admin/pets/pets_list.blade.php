@@ -18,6 +18,26 @@
                         </div>
                     </div>
                     <div class="card-body">
+
+                        @if (session('success'))
+                            <div class="alert alert-success">
+                                <ul>
+                                    <li>
+                                        {{ session('success') }}
+                                    </li>
+                                </ul>
+                            </div>
+                        @endif
+
+                        @if ($errors->any())
+                            <div class="alert alert-danger">
+                                <div class="ul">
+                                    @foreach ($errors->all() as $error)
+                                        {{ $error }}
+                                    @endforeach
+                                </div>
+                            </div>
+                        @endif
                         <div class="table-resposive">
 
                             <table class="table table-striped">
@@ -55,12 +75,14 @@
                                             <td>
                                                 <div class="form-button-action">
 
-                                                    <a href="{{ route('admin.pet.delete', $pet_row->id) }}" data-bs-toggle="tooltip" title="Remove"
+                                                    <a href="{{ route('admin.pet.delete', $pet_row->id) }}"
+                                                        data-bs-toggle="tooltip" title="Remove"
                                                         class="btn btn-link btn-danger" onclick="return remove()"
                                                         data-original-title="Remove">
                                                         <i class="fa-solid fa-trash"></i>
                                                     </a>
-                                                    <a href="{{ route('admin.status.update' , $pet_row->id)}}" data-bs-toggle="tooltip" title="View details"
+                                                    <a href="{{ route('admin.pet.view', $pet_row->id) }}"
+                                                        data-bs-toggle="tooltip" title="View details"
                                                         class="btn btn-link btn-success" data-original-title="View">
                                                         <i class="fa-regular fa-eye"></i>
                                                     </a>
