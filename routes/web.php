@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin\AdminDashboard;
+use App\Http\Controllers\Admin\AdminPetController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\DoctorController;
 use App\Http\Controllers\User\UserDashboardController;
@@ -36,6 +37,13 @@ Route::prefix('admin')->middleware('role')->group(function(){
     Route::get('user-view/{id}',[UserController::class,'show'])->name('admin.user.view');
     Route::get('user-delete/{id}',[UserController::class,'destroy'])->name("admin.user.delete");
     Route::get('user-status-update/{id}',[UserController::class,'status_update'])->name("admin.user.status.update");
+
+
+    // pets route
+
+    Route::get('pets-list',[AdminPetController::class,'index'])->name('admin.pet.list');
+    Route::get('pets-status/update/{id}',[AdminPetController::class,'status_update'])->name('admin.status.update');
+    Route::get('pets-delete',[AdminPetController::class,'delete'])->name('admin.pet.delete');
 });
 
 

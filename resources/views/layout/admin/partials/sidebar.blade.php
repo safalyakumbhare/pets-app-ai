@@ -38,7 +38,7 @@
                   </li>
 
                   <li class="nav-item ">
-                      <a href="/pets_table.php" class="nav-link" aria-expanded="false">
+                      <a href="{{ route('admin.pet.list') }}" class="nav-link" aria-expanded="false">
                           <i class="fa-solid fa-dog"></i>
                           <p>Pets</p>
                           <!-- <span class="caret"></span> -->
