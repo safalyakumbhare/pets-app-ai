@@ -43,7 +43,7 @@ Route::prefix('admin')->middleware('role')->group(function(){
 
     Route::get('pets-list',[AdminPetController::class,'index'])->name('admin.pet.list');
     Route::get('pets-status/update/{id}',[AdminPetController::class,'status_update'])->name('admin.status.update');
-    Route::get('pets-delete',[AdminPetController::class,'delete'])->name('admin.pet.delete');
+    Route::get('pets-delete/{id}',[AdminPetController::class,'delete'])->name('admin.pet.delete');
 });
 
 

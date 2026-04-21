@@ -231,11 +231,12 @@
 
 
   </div>
-  <!--
-  <script src="assets/jquery/jquery-3.7.1.min.js"></script>
-  <script src="assets/jquery/jquery.validate.min.js"></script>
-  <script src="assets/jquery/jquery-ui.min.js"></script> -->
-  <!-- <script src="assets/js/doctor_registration_js/script.js"></script> -->
-</body>
 
+</body>
+    <!--   Core JS Files   -->
+    <script src="{{ asset('js/dashboard_js/core/jquery-3.7.1.min.js')}}"></script>
+    <script src="{{ asset('jquery/jquery.validate.min.js') }}"></script>
+    <script src="{{ asset('jquery/jquery-ui.min.js') }}"></script>
+    <script src="{{ asset('js/dashboard_js/core/popper.min.js')}}"></script>
+    <script src="{{ asset('js/dashboard_js/core/bootstrap.min.js')}}"></script>
 </html>

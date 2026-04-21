@@ -28,4 +28,13 @@ class AdminPetController extends Controller
 
         return redirect()->back()->with("success", "Pet status updated successfully");
     }
+
+
+    public function delete($id){
+        
+    $pet = Pet::where('id',$id)->delete();
+
+    return redirect()->back()->with('success','Pet Removed Successfully');
+
+    }
 }

@@ -55,13 +55,13 @@
                                             <td>
                                                 <div class="form-button-action">
 
-                                                    <a href="#" data-bs-toggle="tooltip" title="Remove"
+                                                    <a href="{{ route('admin.pet.delete', $pet_row->id) }}" data-bs-toggle="tooltip" title="Remove"
                                                         class="btn btn-link btn-danger" onclick="return remove()"
                                                         data-original-title="Remove">
                                                         <i class="fa-solid fa-trash"></i>
                                                     </a>
-                                                    <a href="#" data-bs-toggle="tooltip" title="View details"
-                                                        class="btn btn-link btn-success" data-original-title="Remove">
+                                                    <a href="{{ route('admin.status.update' , $pet_row->id)}}" data-bs-toggle="tooltip" title="View details"
+                                                        class="btn btn-link btn-success" data-original-title="View">
                                                         <i class="fa-regular fa-eye"></i>
                                                     </a>
                                                 </div>
