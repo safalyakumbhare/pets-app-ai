@@ -22,9 +22,48 @@ class DoctorController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
-    {
-        $request->all();
+     public function store(Request $request){
+        $request->validate([
+            'fname' => 'required',
+            'email' => 'required',
+            'phone' => 'required',
+            'dob' => 'required',
+            'address' => 'required',
+            'gender' => 'required',
+            'password' => 'required',
+            'profile' => 'required',
+            'license' => 'required'
+            'specialization' => 'required',
+            'experience' => 'required',
+            'certification' => 'required',
+            'password' => 'requried'
+        ]);
+
+
+        $doctor = new Doctor();
+        $doctor->role_id = 3,
+        $doctor->name = $request->fname;
+        $doctor->email = $request->email;
+        $doctor->phone = $request->phone;
+        $doctor->dob = $request->dob;
+        $doctor->address = $request->address;
+        $doctor->gender = $request->gender;
+        $doctor->profile = $request->profile;
+        $doctor->license_no = $request->license;
+        $doctor->certification = $request->certification;
+        $doctor->specialization = $request->specialization;
+        $doctor->experience = $request->experience;
+        $doctor->status = 'Inactive',
+        $doctor->approval = 'Pending'
+
+
+        if($doctor->save()){
+            return redirect->back()->with('success','Registration sent to approval')
+        }
+        else{
+            return redirect()->back()->with('errors','Error while registration')
+        }
+
     }
 
     /**

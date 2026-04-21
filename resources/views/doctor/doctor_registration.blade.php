@@ -53,8 +53,9 @@
           <h1 class="fw-bold mb-3">Pets Portal Doctor's Registration</h1>
 
         </div>
-        <form id="doctor_form" method="post" enctype="multipart/form-data">
-          <div class="row">
+        <form action="{{ route('doctor.store')}}" id="doctor_form" method="post" enctype="multipart/form-data">
+        @csrf  
+        <div class="row">
             <div class="col-md-12">
               <div class="card">
                 <div class="card-header rounded-top-3" style="background-color: lightgray">
@@ -218,7 +219,7 @@
 
                     </div>
                     <div class="col-md-2">
-                      <a href="index.php" class="btn btn-danger btn-block">Cancel</a>
+                      <a href="{{route('loginpage')}}" class="btn btn-danger btn-block">Cancel</a>
                     </div>
                   </div>
                 </div>

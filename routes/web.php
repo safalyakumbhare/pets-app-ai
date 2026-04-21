@@ -19,12 +19,17 @@ Route::get('who_register',function(){
     return view('who_register');
 })->name('who_register');
 
-
+// user registration
 Route::get('user/create',[UserController::class,'create'])->name('user.create');
 Route::post('user/store',[UserController::class,'store'])->name('user.store');
 
+// doctor registration
 Route::get('doctor/create',[DoctorController::class,'create'])->name('doctor.create');
+Route::post('doctor/store'.[DoctorController::class,'store'])->name('doctor.store');
+
+// login
 Route::post('login',[AuthController::class,'login'])->name('login');
+
 
 Route::prefix('admin')->middleware('role')->group(function(){
 
