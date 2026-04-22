@@ -94,7 +94,7 @@ class UserController extends Controller
      */
     public function edit(string $id)
     {
-        // 
+        //
     }
 
     /**
@@ -110,7 +110,13 @@ class UserController extends Controller
             $user->status = "Active";
         }
 
-        return redirect()->back()->with("success", "User status updated successfully");
+        if($user->save()){
+            return redirect()->back()->with("success", "User status updated successfully");
+        }
+        else{
+            return redirect()->back()->with("error", "Error to update user status");
+        }
+
     }
 
     /**
