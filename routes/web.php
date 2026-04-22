@@ -53,6 +53,8 @@ Route::prefix('admin')->middleware('role')->group(function(){
 
     // doctor routes
     Route::get('doctors-list',[AdminDoctorController::class,'index'])->name('admin.doctor.list');
+    Route::get('doctor-view/{id}',[AdminDoctorController::class,'view'])->name('admin.doctor.view');
+
 });
 
 

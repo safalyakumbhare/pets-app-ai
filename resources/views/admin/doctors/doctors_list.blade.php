@@ -14,6 +14,25 @@
 
                         <div class="card-body">
 
+                            @if (session('success'))
+                                <div class="alert alert-success">
+                                    <ul>
+                                        <li>
+                                            {{ session('success') }}
+                                        </li>
+                                    </ul>
+                                </div>
+                            @endif
+
+                            @if ($errors->any())
+                                <div class="alert alert-danger">
+                                    <div class="ul">
+                                        @foreach ($errors->all() as $error)
+                                            {{ $error }}
+                                        @endforeach
+                                    </div>
+                                </div>
+                            @endif
 
                             <div class="table-responsive">
                                 <table id="add-row" class="display table table-striped table-hover">
@@ -70,7 +89,7 @@
 
 
                                                         @if ($doctor->approval == 'Pending' || $doctor->approval == 'Rejected')
-                                                            <span class='badge badge-danger'>{{ $doctor->approval}}</span>
+                                                            {{-- <span class='badge badge-danger'>{{ $doctor->approval}}</span> --}}
                                                         @else
                                                             @if ($doctor->status == 'Active')
                                                                 <a href="doctor_table.php?doctor_id={{ $doctor->doctor_id }}"
@@ -90,7 +109,7 @@
                                                                 </a>
                                                             @endif
                                                         @endif
-                                                        <a href="doctor_detail.php?doctor_id={{ $doctor->doctor_id }}"
+                                                        <a href="{{ route('admin.doctor.view', $doctor->id) }}"
                                                             data-bs-toggle="tooltip" title="View Details"
                                                             class="btn btn-link btn-success"
                                                             data-original-title="View Details">
