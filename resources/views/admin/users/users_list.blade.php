@@ -49,11 +49,11 @@
                                     </thead>
 
                                     <tbody>
-                                        {{-- @if ($users->empty())
+                                        @if ($users)
                                             <tr>
                                                 <td class="text-center" colspan="6">No User Found</td>
                                             </tr>
-                                        @endif --}}
+                                        @endif
                                         @foreach ($users as $user)
                                             <tr>
                                                 <td>

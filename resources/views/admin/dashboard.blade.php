@@ -11,9 +11,9 @@
                         <!-- <h6 class="op-7 mb-2">Free Bootstrap 5 Admin Dashboard</h6> -->
                     </div>
                     <!-- <div class="ms-md-auto py-2 py-md-0">
-                                <a href="#" class="btn btn-label-info btn-round me-2">Manage</a>
-                                <a href="#" class="btn btn-primary btn-round">Add Customer</a>
-                            </div> -->
+                                    <a href="#" class="btn btn-label-info btn-round me-2">Manage</a>
+                                    <a href="#" class="btn btn-primary btn-round">Add Customer</a>
+                                </div> -->
                 </div>
                 <div class="row">
                     <div class="col-sm-6 col-md-3">
@@ -171,7 +171,9 @@
 
                                                 @foreach ($clinics as $clinic_data)
                                                     @php
-                                                        $doctor_data = \App\Models\Doctor::find($clinic_data->doctor_id);
+                                                        $doctor_data = \App\Models\Doctor::find(
+                                                            $clinic_data->doctor_id,
+                                                        );
                                                     @endphp
 
 
@@ -246,23 +248,22 @@
                                 </div>
                                 <div class="card-list py-4">
                                     @foreach ($doctors_today as $doctor_data)
+                                        <div class="item-list">
+                                            <div class="avatar">
+                                                <img src="assets/images/doctors/{{ $doctor_data->profile }}"
+                                                    alt="..." class="avatar-img rounded-circle" />
+                                            </div>
+                                            <div class="info-user ms-3">
+                                                <div class="username">{{ $doctor_data->name }}</div>
+                                                <div class="status">{{ $doctor_data->address }}</div>
+                                            </div>
+
+                                            <a href="doctor_detail.php?doctor_id={{ $doctor_data->doctor_id }}"
+                                                class="btn btn-icon btn-link btn-primary op-8">
+                                                <i class="fa-solid fa-eye"></i>
+                                            </a>
+                                        </div>
                                     @endforeach
-                                    <div class="item-list">
-                                        <div class="avatar">
-                                            <img src="assets/images/doctors/{{ $doctor_data->profile }}" alt="..."
-                                                class="avatar-img rounded-circle" />
-                                        </div>
-                                        <div class="info-user ms-3">
-                                            <div class="username">{{ $doctor_data->name }}</div>
-                                            <div class="status">{{ $doctor_data->address }}</div>
-                                        </div>
-
-                                        <a href="doctor_detail.php?doctor_id={{ $doctor_data->doctor_id }}"
-                                            class="btn btn-icon btn-link btn-primary op-8">
-                                            <i class="fa-solid fa-eye"></i>
-                                        </a>
-                                    </div>
-
                                     @if ($doctors_today->isEmpty())
                                         <div class="item-list justify-content-center">
                                             <p>No New User Found</p>

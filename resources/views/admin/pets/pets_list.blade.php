@@ -52,6 +52,13 @@
                                     </tr>
                                 </thead>
                                 <tbody>
+
+                                    @if($pet)
+                                    <tr>
+                                        <td colspan="6" class="text-center">No pet found</td>
+                                    </tr>
+                                    @endif
+
                                     @foreach ($pet as $pet_row)
                                         <tr>
                                             <td>
